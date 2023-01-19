@@ -37,6 +37,7 @@ const Home: React.FC = () => {
           {amountOfDaysToFill > 0 &&
             Array.from({ length: amountOfDaysToFill }).map((_, i) => (
               <View
+                key={i}
                 className="bg-zinc-900 m-1 rounded-lg border-2 opacity-40 border-zinc-800"
                 style={{ width: daySize, height: daySize }}
               />
