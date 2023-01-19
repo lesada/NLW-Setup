@@ -3,8 +3,8 @@ import { HabitDay } from "./HabitDay";
 
 const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const sumaryDates = datesFromYearBeginning();
-const minimumSumaryDates = 18 * 7; // 18 weeks
-const amountOfDaysToFill = minimumSumaryDates - sumaryDates.length;
+const minimumSummaryDates = 18 * 7; // 18 weeks
+const amountOfDaysToFill = minimumSummaryDates - sumaryDates.length;
 
 const SummaryTable: React.FC = () => {
   return (
