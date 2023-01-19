@@ -4,7 +4,7 @@ const NewHabitForm: React.FC = () => {
   return (
     <form action="" className="w-full flex flex-col mt-6">
       <label htmlFor="title" className="font-semibold leading-tight">
-        What's your compromise?
+        What do you want to conquer?
       </label>
       <input
         type="text"
