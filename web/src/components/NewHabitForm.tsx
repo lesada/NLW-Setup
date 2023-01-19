@@ -15,7 +15,7 @@ const NewHabitForm: React.FC = () => {
       />
 
       <label htmlFor="" className="font-semibold leadign-tight mt-4">
-        Qual a recorrência
+        What's the recurrence?
       </label>
 
       <button
