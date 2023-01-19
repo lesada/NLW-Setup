@@ -72,7 +72,7 @@ const New: React.FC = () => {
           <Feather name="check" size={20} color={colors.white} />
 
           <Text className="font-semibold text-base text-white ml-2">
-            Confirmar
+            Confirm
           </Text>
         </TouchableOpacity>
       </ScrollView>
