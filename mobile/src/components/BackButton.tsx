@@ -1,3 +1,5 @@
+import React from "react";
+
 import { TouchableOpacity } from "react-native";
 
 import colors from "tailwindcss/colors";

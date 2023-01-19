@@ -1,3 +1,5 @@
+import React from "react";
+
 import { View, Text, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import colors from "tailwindcss/colors";
@@ -5,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import Logo from "../assets/logo.svg";
 
-const components: React.FC = () => {
+const Header: React.FC = () => {
   const { navigate } = useNavigation();
 
   return (
@@ -22,4 +24,4 @@ const components: React.FC = () => {
   );
 };
 
-export default components;
+export default Header;
