@@ -19,7 +19,7 @@ const NewHabitForm: React.FC = () => {
 
   async function createNewHabit(e: FormEvent) {
     e.preventDefault();
-    if (!title || weekDays.length === 0) {
+    if (!title.trim() || weekDays.length === 0) {
       return;
     }
 
