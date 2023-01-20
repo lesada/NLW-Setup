@@ -29,6 +29,27 @@ function List({ date }: ListProps) {
         setHabitsInfo(response.data);
       });
   }, []);
+
+  async function handleToggleHabits(habitId: string) {
+    await api.patch(`habits/${habitId}/toggle`);
+
+    const isHabitCompleted = habitsInfo?.completedHabits.includes(habitId);
+
+    let completedHabits: string[] = [];
+
+    if (isHabitCompleted) {
+      completedHabits = habitsInfo!.completedHabits.filter(
+        (id) => id !== habitId
+      );
+    } else {
+      completedHabits = [...habitsInfo!.completedHabits, habitId];
+    }
+    setHabitsInfo({
+      possibleHabits: habitsInfo!.possibleHabits,
+      completedHabits,
+    });
+  }
+
   return (
     <div className="mt-6 flex flex-col gap-3">
       {habitsInfo?.possibleHabits.map((habit) => {
@@ -36,6 +57,7 @@ function List({ date }: ListProps) {
           <Checkbox.Root
             key={habit.id}
             checked={habitsInfo.completedHabits.includes(habit.id)}
+            onCheckedChange={() => handleToggleHabits(habit.id)}
             className="flex items-center gap-3 group"
           >
             <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-zinc-900 border-2 border-zinc-800 group-data-[state=checked]:bg-green-500 group-data-[state=checked]:border-green-500">
