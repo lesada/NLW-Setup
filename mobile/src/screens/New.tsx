@@ -11,6 +11,7 @@ import { Feather } from "@expo/vector-icons";
 import colors from "tailwindcss/colors";
 import BackButton from "../components/BackButton";
 import Checkbox from "../components/Checkbox";
+import { api } from "../lib/axios";
 
 const avaliableWeekDays = [
   "Sunday",
@@ -24,6 +25,7 @@ const avaliableWeekDays = [
 
 const New: React.FC = () => {
   const [weekDays, setWeekDays] = useState<number[]>([]);
+  const [title, setTitle] = useState("");
 
   function handleToggleWeekDay(weekDayIndex: number) {
     if (weekDays.includes(weekDayIndex)) {
@@ -32,6 +34,25 @@ const New: React.FC = () => {
       );
     } else {
       setWeekDays((prevState) => [...prevState, weekDayIndex]);
+    }
+  }
+
+  async function handleCreateNewHabit() {
+    try {
+      if (!title.trim() || weekDays.length === 0) {
+        return;
+      }
+
+      await api.post("habits", {
+        title,
+        weekDays,
+      });
+
+      console.log(title, weekDays);
+      setTitle("");
+      setWeekDays([]);
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -53,6 +74,8 @@ const New: React.FC = () => {
           className="h-12 pl-4 rounded-lg mt-3 bg-zinc-800 text-white border-2 border-zinc-800  focus:border-green-600"
           placeholder="ex.: Exercize, read 20 pages of a book..."
           placeholderTextColor={colors.zinc[400]}
+          onChangeText={setTitle}
+          value={title}
         />
 
         <Text className="mt-4 mb-3 text-white font-semibold text-base">
@@ -68,9 +91,11 @@ const New: React.FC = () => {
           />
         ))}
 
-        <TouchableOpacity className="w-full h-14 flex-row items-center justify-center bg-green-600 rounded-md mt-6">
+        <TouchableOpacity
+          className="w-full h-14 flex-row items-center justify-center bg-green-600 rounded-md mt-6"
+          onPress={handleCreateNewHabit}
+        >
           <Feather name="check" size={20} color={colors.white} />
-
           <Text className="font-semibold text-base text-white ml-2">
             Confirm
           </Text>
