@@ -42,19 +42,19 @@ const SummaryTable: React.FC = () => {
       <div className="grid grid-rows-7 grid-flow-col gap-3">
         {summary.length > 0 &&
           summaryDates.map((date) => {
-          const dayInSummary = summary.find((day) => {
-            return dayjs(date).isSame(day.date, "day");
-          });
+            const dayInSummary = summary.find((day) => {
+              return dayjs(date).isSame(day.date, "day");
+            });
 
-          return (
-            <HabitDay
-              key={date.toString()}
-              date={date}
-              amount={dayInSummary?.amount}
-              completed={dayInSummary?.completed}
-            />
-          );
-        })}
+            return (
+              <HabitDay
+                key={date.toString()}
+                date={date}
+                amount={dayInSummary?.amount}
+                defaultCompleted={dayInSummary?.completed}
+              />
+            );
+          })}
 
         {amountOfDaysToFill > 0 &&
           Array.from({ length: amountOfDaysToFill }).map((_, i) => {

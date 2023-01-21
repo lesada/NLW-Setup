@@ -10,7 +10,7 @@ const ProgressBar = (props: ProgressBarProps) => {
       value={66}
     >
       <Progress.Indicator
-        className="h-3 rounded-xl bg-violet-600"
+        className="h-3 rounded-xl bg-violet-600  ease duration-300"
         style={{ width: `${props.progress}%` }}
       />
     </Progress.Root>
