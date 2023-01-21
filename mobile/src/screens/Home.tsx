@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useCallback, useEffect, useState } from "react";
 import { Text, View, ScrollView } from "react-native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import Header from "../components/Header";
 import HabitDay, { daySize } from "../components/HabitDay";
 import { api } from "../lib/axios";
 import { datesFromYearBeggining } from "../utils/datesFromYearBeggining";
-import { useNavigation } from "@react-navigation/native";
 import Loading from "../components/Loading";
 import dayjs from "dayjs";
 
@@ -40,9 +39,11 @@ const Home: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
 
   if (loading) {
     return <Loading />;
