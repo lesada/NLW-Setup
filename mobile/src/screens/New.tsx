@@ -48,7 +48,6 @@ const New: React.FC = () => {
         weekDays,
       });
 
-      console.log(title, weekDays);
       setTitle("");
       setWeekDays([]);
     } catch (error) {

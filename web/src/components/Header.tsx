@@ -1,14 +1,23 @@
+import { useState } from "react";
 import { Plus } from "phosphor-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import logo from "../assets/logo.svg";
 import NewHabitForm from "./NewHabitForm";
 
-const Header: React.FC = () => {
+function Header({ setUpdate }: any) {
+  const [isClosed, setIsClosed] = useState(false);
   return (
     <div className="w-full max-w-3xl mx-auto flex items-center justify-between">
       <img src={logo} alt="Habits" />
 
-      <Dialog.Root>
+      <Dialog.Root
+        onOpenChange={() => {
+          setIsClosed(!isClosed);
+          if (isClosed) {
+            setUpdate(true);
+          }
+        }}
+      >
         <Dialog.Trigger
           type="button"
           className="border border-violet-500 font-semibold rounded-lg px-6 py-4 flex items-center gap-3 hover:border-violet-300 ease-out duration-200"
@@ -28,6 +37,6 @@ const Header: React.FC = () => {
       </Dialog.Root>
     </div>
   );
-};
+}
 
 export default Header;

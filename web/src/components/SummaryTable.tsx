@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { api } from "../lib/axios";
 import dayjs from "dayjs";
 import { datesFromYearBeginning } from "../utils/datesFromYearBeginning";
@@ -16,14 +16,18 @@ type Summary = {
   completed: number;
 }[];
 
-const SummaryTable: React.FC = () => {
+function SummaryTable({ update }: any) {
   const [summary, setSummary] = useState<Summary>([]);
+  const [, updateState] = useState({});
+  const forceUpdate = useCallback(() => updateState({}), []);
 
   useEffect(() => {
     api.get("summary").then((response) => {
       setSummary(response.data);
     });
-  }, []);
+
+    if (update === true) forceUpdate;
+  }, [update]);
 
   return (
     <div className="w-full flex">
@@ -68,6 +72,6 @@ const SummaryTable: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SummaryTable;
