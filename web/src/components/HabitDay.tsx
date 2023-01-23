@@ -1,9 +1,10 @@
+import { useState } from "react";
 import * as Popover from "@radix-ui/react-popover";
 import clsx from "clsx";
-import ProgressBar from "./ProgressBar";
 import dayjs from "dayjs";
+import ProgressBar from "./ProgressBar";
 import List from "./List";
-import { useEffect, useState } from "react";
+import { X } from "phosphor-react";
 
 interface HabitDayProps {
   date: Date;
@@ -49,6 +50,9 @@ export function HabitDay({
       />
       <Popover.Portal>
         <Popover.Content className="min-w-[320px] p-6 rounded-2xl bg-zinc-900 flex flex-col">
+          <Popover.Close className="flex justify-end text-zinc-400 absolute w-6 h-6 top-6 right-6 cursor-pointer ">
+            <X />
+          </Popover.Close>
           <span className="font-semibold text-zinc-400">{dayOfWeek}</span>
           <span className="mt-1 font-extrabold leading-tight text-3xl">
             {monthAndDay}
